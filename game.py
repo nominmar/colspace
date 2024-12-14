@@ -101,6 +101,7 @@ class ColorSpaces:
 
         if self.num_guesses >= self.max_guesses:
             logger.info("Game over. Maximum number of guesses reached.")
+            self.game_over = True
             return
         self.num_guesses += 1
         x_, y_ = self.normalize_to_xy(guess, guess_type)
