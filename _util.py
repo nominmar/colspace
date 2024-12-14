@@ -37,5 +37,8 @@ def setup_logger(name, level=logging.DEBUG):
     logger.addHandler(handler)
     return logger
 
-def generate_random_rgb():
-    return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+def generate_random_rgb(max_value: int=255):
+    # parametrising max_value to avoid simple colors (e.g. 255,0,0)
+    if max_value > 255:
+        max_value = 255
+    return random.randint(0, max_value), random.randint(0, max_value), random.randint(0, max_value)
