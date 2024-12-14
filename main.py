@@ -1,7 +1,15 @@
 import streamlit as st
+from display import display_cie_color
+from app_utils import (
+    get_game_settings, 
+    get_user_input, 
+    plot_plane, 
+    set_session_state, 
+    game_instructions
+)
 
-from app_utils import get_game_settings, get_user_input, plot_plane, set_session_state, display_cie_color, game_instructions
 
+st.set_page_config(layout="centered")
 
 def run():
     max_tolerance, max_tries, level = get_game_settings()

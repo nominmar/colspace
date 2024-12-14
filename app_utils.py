@@ -6,8 +6,6 @@ from game import ColorSpaces
 from display import plot_cie1931
 from _util import generate_random_rgb
 
-st.set_page_config(layout="centered")
-
 def process_cmyk_input():
     guess = st.text_input('Enter your guess (e.g., 0,100,100,0 for CMYK):', value='0,0,0,1')
     cmyk_values = guess.split(',')
