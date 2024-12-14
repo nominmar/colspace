@@ -1,10 +1,9 @@
 import random
 import streamlit as st
-from typing import List
 import matplotlib.patheffects as path_effects
 
-from game import ColorSpaces, Guess
-from display import display_cie_color, plot_cie1931
+from game import ColorSpaces
+from display import plot_cie1931
 from _util import generate_random_rgb
 
 st.set_page_config(layout="centered")

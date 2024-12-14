@@ -1,17 +1,11 @@
 from typing import Tuple
-import math
-import os
-import pickle
 
-from colour.models import eotf_inverse_sRGB
-from colour.plotting import plot_RGB_colourspaces_in_chromaticity_diagram_CIE1931
 import matplotlib.patheffects as path_effects
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
-import streamlit as st
+from colour.plotting import plot_RGB_colourspaces_in_chromaticity_diagram_CIE1931
 
-from converters import rgb_to_cie1931_xy, xyY_to_rgb
+from converters import xyY_to_rgb
 
 def plot_cie1931(target: Tuple[float, float]) -> Tuple[plt.Figure, plt.Axes]:
     fig, ax = plot_RGB_colourspaces_in_chromaticity_diagram_CIE1931(colourspaces=['sRGB'], 
