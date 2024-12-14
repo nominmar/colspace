@@ -27,9 +27,9 @@ def cie_xyY_to_XYZ(x, y, Y):
 def generate_random_rgb():
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
-def setup_logger(name, log_file, level=logging.INFO):
+def setup_logger(name, level=logging.DEBUG):
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-    handler = logging.FileHandler(log_file)        
+    handler = logging.StreamHandler()
     handler.setFormatter(formatter)
 
     logger = logging.getLogger(name)
