@@ -1,13 +1,12 @@
 """
 Creates a random color, takes input in various color spaces, and scores guesses based on distance in CIE1931 space
 """
-import logging
 from dataclasses import dataclass
 
 from _util import generate_random_rgb, setup_logger
 from converters import hex_to_rgb, hsl_to_rgb, cmyk_to_rgb, rgb_to_cie1931_xy
 
-logger = setup_logger(__name__, "game.log")
+logger = setup_logger('colorspaces')
 
 @dataclass
 class GuessType:
@@ -41,7 +40,7 @@ class ColorSpaces:
         Initialize the ColorSpaces game
         """
         if target_color:
-            self.target_x, self.target_y = rgb_to_cie1931_xy(target_color[0], target_color[1], target_color[2])
+            self.target_x, self.target_y = rgb_to_cie1931_xy(*target_color)
         else:
             self.target_x, self.target_y = rgb_to_cie1931_xy(*generate_random_rgb())
         logger.info(f"New game started with target color at ({self.target_x:.3f}, {self.target_y:.3f})")
@@ -71,7 +70,7 @@ class ColorSpaces:
         Normalize guess to CIE1931 xy coordinates
         """
         if guess_type == 'RGB':
-            x_, y_ = rgb_to_cie1931_xy(guess[0], guess[1], guess[2])
+            x_, y_ = rgb_to_cie1931_xy(*guess)
         elif guess_type == 'HEX':
             rgb_guess = guess_types[guess_type].converter(guess)
             x_, y_ = rgb_to_cie1931_xy(*rgb_guess)
@@ -127,3 +126,9 @@ class ColorSpaces:
             self.best_guess = current_guess
         self.guesses.append(current_guess)
         logger.info(f"Guess #{self.num_guesses}: ({x_:.3f}, {y_:.3f}), Score: {distance_to_target:.3f}")
+
+if __name__ == '__main__':
+    game = ColorSpaces()
+    game.add_guess((255, 0, 0), 'RGB')
+    game.add_guess((0, 255, 0), 'RGB')
+    game.add_guess((0, 0, 255), 'RGB')
