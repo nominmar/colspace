@@ -16,10 +16,13 @@ def process_cmyk_input():
                 guess = (c, m, y, k)
             else:
                 st.error('Each CMYK value must be between 0 and 100.')
+                st.stop()
         except ValueError:
             st.error('Please enter integer values for CMYK.')
+            st.stop()
     else:
         st.error('Please enter four values separated by commas for CMYK.')
+        st.stop()
     return guess
 
 def process_rgb_input():
@@ -32,10 +35,13 @@ def process_rgb_input():
                 guess = (r, g, b)
             else:
                 st.error('Each RGB value must be between 0 and 255.')
+                st.stop()
         except ValueError:
             st.error('Please enter integer values for RGB.')
+            st.stop()
     else:
         st.error('Please enter three values separated by commas for RGB.')
+        st.stop()
     return guess
 
 def get_user_input():
