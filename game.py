@@ -30,19 +30,26 @@ guess_types = {
     'CMYK': GuessType('CMYK', cmyk_to_rgb)
 }
 
+level_map = {
+    'Easy': 255,
+    'Medium': 100,
+    'Hard': 100
+}
+
 
 class ColorSpaces:
     def __init__(self, 
                 target_color: tuple = None, 
                  max_guesses: int = 10,
-                 max_tolerance: float = 0.01):
+                 max_tolerance: float = 0.01,
+                 level: str = 'Medium'):
         """
         Initialize the ColorSpaces game
         """
         if target_color:
             self.target_x, self.target_y = rgb_to_cie1931_xy(*target_color)
         else:
-            self.target_x, self.target_y = rgb_to_cie1931_xy(*generate_random_rgb())
+            self.target_x, self.target_y = rgb_to_cie1931_xy(*generate_random_rgb(max_value=level_map[level]))
         logger.info(f"New game started with target color at ({self.target_x:.3f}, {self.target_y:.3f})")
         self.guesses = []
         self.best_guess = None
@@ -51,6 +58,7 @@ class ColorSpaces:
         self.max_tolerance = max_tolerance
         self.game_over = False
         self.last_guess = None
+        self.level = level
 
     
 
