@@ -13,6 +13,8 @@ def plot_cie1931(target: Tuple[float, float]) -> Tuple[plt.Figure, plt.Axes]:
                                                                     show_diagram_labels=True, 
                                                                     show_centre=False)
     ax.plot(target[0], target[1], 'x', markersize=14, color='white', label='Target', mew=2, path_effects=[path_effects.withStroke(linewidth=4, foreground='black')])
+    ax.axhline(y=target[1], color='white', linestyle='--', linewidth=1)
+    ax.axvline(x=target[0], color='white', linestyle='--', linewidth=1)
     ax.legend()
     ax.set_title('')
     return (fig, ax)
