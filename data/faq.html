@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game movement FAQ</title>
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            margin: 12px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        h2 {
+            color: #333;
+            font-weight: bold;
+        }
+        p {
+            margin-bottom: 8px;
+        }
+        ul {
+            margin-top: 0;
+            padding-left: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Q1: Why do the same ratios of RGB values map to the same location on the CIE xy plane?</h3>
+    <p>
+        When you input RGB values, the transformation process normalizes them and converts them to the CIE xy chromaticity space. This space represents color independent of brightness, meaning the ratios between <code>R</code>, <code>G</code>, and <code>B</code> determine the chromaticity. For example:
+    </p>
+    <ul>
+        <li>RGB <code>(10, 20, 30)</code> (1:2:3 ratio) will map to the same xy location as RGB <code>(50, 100, 150)</code>, since their relative proportions are identical.</li>
+    </ul>
+    <p>
+        This happens because the CIE xy plane focuses solely on chromaticity, and luminance (brightness) is handled separately by the <code>Y</code> component in the CIE XYZ space.
+    </p>
+
+    <h3>Q2: Will the location on the xy plane move in a straight line if I increment <code>R</code> while keeping <code>G</code> and <code>B</code> constant?</h3>
+    <p>
+        No, the movement on the xy plane will not be perfectly linear. This non-linearity arises from:
+    </p>
+    <ul>
+        <li><strong>Gamma Correction:</strong> The RGB-to-XYZ transformation applies gamma correction, which is a non-linear adjustment of color values.</li>
+        <li><strong>Normalization to Compute xy:</strong> The final xy coordinates are calculated as ratios of <code>X</code>, <code>Y</code>, and <code>Z</code>, which further introduces non-linearity.</li>
+    </ul>
+    <p>
+        As a result, while small increments in <code>R</code> may appear nearly linear, larger changes will follow a curved trajectory rather than a straight line.
+    </p>
+</body>
+</html>
